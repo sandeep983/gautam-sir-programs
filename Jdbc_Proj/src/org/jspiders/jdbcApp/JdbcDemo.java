@@ -4,6 +4,7 @@ public class JdbcDemo {
 	public static void main(String[] args) {
 		Connection con = null;
 		Statement stmt = null;
+		String query = "Insert into btm.student values(1, 'Sandeep', 65.45)";
 		
 		try 
 		{
@@ -15,6 +16,9 @@ public class JdbcDemo {
 			
 			stmt=con.createStatement();
 			System.out.println("Platform Created.");
+			
+			stmt.executeUpdate(query);
+			System.out.println("Data Inserted.");
 		} 
 		catch (ClassNotFoundException | SQLException e) 
 		{
