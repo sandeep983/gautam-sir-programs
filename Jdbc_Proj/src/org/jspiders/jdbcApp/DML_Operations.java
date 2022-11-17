@@ -1,3 +1,11 @@
+/*	
+ *	Performing DML Operations on the Database using JDBC
+ *	Using Statement Interface and executeUpdate() method
+ * 			Database Name: btm, 
+ * 			Table Name: student
+ * 			Table Columns: id, name, perc
+ */
+
 package org.jspiders.jdbcApp;
 import java.sql.*;
 import java.util.Scanner;
