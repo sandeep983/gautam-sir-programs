@@ -1,8 +1,9 @@
 package org.jspiders.jdbcApp;
 import java.sql.*;
 import java.util.Scanner;
-public class SqlQueries {
+public class DML_Operations {
 	private static final Scanner sc = new Scanner(System.in);
+	private static String query, format;
 	
 	public static void main(String[] args) {
 		Connection con = null;
@@ -32,25 +33,47 @@ public class SqlQueries {
 				int n = sc.nextInt();
 				sc.nextLine();
 				if(n==4) {
-					System.out.println("Exit Successfully.");
+					System.out.println("\nExit Successfully.");
 					break;
 				}
 				else {
 					switch(n) {
 						case 1:
-							System.out.println("\nEnter the value inside parenthesis,\nFor example: (1, 'Sandeep', 65.45)");
-							System.out.print("\nEnter the value: ");
-							String val = sc.nextLine();
-							String queryFormat = "Insert into btm.student values";
-							stmt.executeUpdate(queryFormat.concat(val));
-							System.out.println("Data Inserted.");
+							System.out.println("\nWrite the remaining part of the query / Or complete the query:");
+							System.out.println("Example: INSERT INTO btm.student VALUES (1, 'Sandeep', 83.39)\n");
+							
+							System.out.print("INSERT INTO btm.student VALUES ");
+							query = sc.nextLine();
+
+							format = "INSERT INTO btm.student VALUES "+query;
+							stmt.executeUpdate(format);
+							System.out.println("\nData Inserted.");
 							break;
+
 						case 2:
-							System.out.println("Not yet implemented.");
+							System.out.println("\nWrite the remaining part of the query / Or complete the query:");
+							System.out.println("Example: Update btm.student SET name='Ram' where id=1\n");
+
+							System.out.print("Update btm.student SET ");
+							query = sc.nextLine();
+
+							format = "Update btm.student SET "+query;
+							stmt.executeUpdate(format);
+							System.out.println("\nData Updated.");
 							break;
+
 						case 3:
-							System.out.println("Not yet implemented.");
+							System.out.println("\nWrite the remaining part of the query / Or complete the query:");
+							System.out.println("Example: DELETE FROM btm.student WHERE id=1\n");
+
+							System.out.print("DELETE FROM btm.student WHERE ");
+							query = sc.nextLine();
+
+							format = "DELETE FROM btm.student WHERE "+query; 
+							stmt.executeUpdate(format);
+							System.out.println("\nData Deleted.");
 							break;
+
 						default: 
 							System.out.println("Invalid Choice, Please choose the correct option.");
 							break;
@@ -79,7 +102,7 @@ public class SqlQueries {
 					e.printStackTrace();
 				}
 			}
-			System.out.println("\nClosed all Costly Resource.");
+			System.out.println("Closed all Costly Resource.");
 		}
 	}
 }
