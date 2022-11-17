@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class DML_Operations {
 	private static final Scanner sc = new Scanner(System.in);
 	private static String query, format;
+	private static int flag=0;
 	
 	public static void main(String[] args) {
 		Connection con = null;
@@ -46,6 +47,7 @@ public class DML_Operations {
 				}
 				else {
 					switch(n) {
+						//Inserting data into the table
 						case 1:
 							System.out.println("\nWrite the remaining part of the query / Or complete the query:");
 							System.out.println("Example: INSERT INTO btm.student VALUES (1, 'Sandeep', 83.39)\n");
@@ -54,10 +56,31 @@ public class DML_Operations {
 							query = sc.nextLine();
 
 							format = "INSERT INTO btm.student VALUES "+query;
-							stmt.executeUpdate(format);
-							System.out.println("\nData Inserted.");
+							
+							try {
+								stmt.executeUpdate(format);
+							}
+							catch (SQLIntegrityConstraintViolationException e) {
+								System.out.println("\nError: ID already present in the database table.");
+								System.out.println("ID is Primary Key in the table, so it can not be duplicate or null.");
+								System.out.println(e);
+								flag=1;
+							}
+							catch (SQLSyntaxErrorException e) {
+								System.out.println("\nError: Check your syntax.");
+								System.out.println(e);
+								flag=1;
+							}
+							
+							if(flag==0) {
+								System.out.println("\nData Inserted Successfully.");
+							}
+							else {
+								flag=0;
+							}
 							break;
 
+						//Updating data into the table
 						case 2:
 							System.out.println("\nWrite the remaining part of the query / Or complete the query:");
 							System.out.println("Example: Update btm.student SET name='Ram' where id=1\n");
@@ -66,10 +89,25 @@ public class DML_Operations {
 							query = sc.nextLine();
 
 							format = "Update btm.student SET "+query;
-							stmt.executeUpdate(format);
-							System.out.println("\nData Updated.");
+
+							try {
+								stmt.executeUpdate(format);
+							}
+							catch (SQLSyntaxErrorException e) {
+								System.out.println("\nError: Check your syntax.");
+								System.out.println(e);
+								flag=1;
+							}
+							
+							if(flag==0) {
+								System.out.println("\nData Updated Successfully.");
+							}
+							else {
+								flag=0;
+							}			
 							break;
 
+						//Deleting data from the table
 						case 3:
 							System.out.println("\nWrite the remaining part of the query / Or complete the query:");
 							System.out.println("Example: DELETE FROM btm.student WHERE id=1\n");
@@ -78,8 +116,22 @@ public class DML_Operations {
 							query = sc.nextLine();
 
 							format = "DELETE FROM btm.student WHERE "+query; 
-							stmt.executeUpdate(format);
-							System.out.println("\nData Deleted.");
+
+							try {
+								stmt.executeUpdate(format);
+							}
+							catch (SQLSyntaxErrorException e) {
+								System.out.println("\nError: Check your syntax.");
+								System.out.println(e);
+								flag=1;
+							}
+							
+							if(flag==0) {
+								System.out.println("\nData Deleted Successfully.");
+							}
+							else {
+								flag=0;
+							}			
 							break;
 
 						default: 
