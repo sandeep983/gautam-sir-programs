@@ -29,7 +29,7 @@ public class DML_Operations {
 			System.out.println("Platform Created.");
 			
 			while(true) {
-				//Printing menu
+				// Printing the menu
 				System.out.println("\n--------------------");
 				System.out.println("What you want to do?");
 				System.out.println("1. INSERT");
@@ -39,15 +39,20 @@ public class DML_Operations {
 				System.out.println("--------------------");
 				System.out.print("\nEnter your choice: ");
 				
+				// Taking input from user, n for choice
+				// sc.nextLine() is used to clear the buffer.
+				// here it takes the new line character '\n' - which is basically the Enter Key pressed)
 				int n = sc.nextInt();
 				sc.nextLine();
+
+				// If user wants to exit
 				if(n==4) {
 					System.out.println("\nExit Successfully.");
 					break;
 				}
 				else {
 					switch(n) {
-						//Inserting data into the table
+						// Data Insertion code
 						case 1:
 							System.out.println("\nWrite the remaining part of the query / Or complete the query:");
 							System.out.println("Example: INSERT INTO btm.student VALUES (1, 'Sandeep', 83.39)\n");
@@ -57,6 +62,7 @@ public class DML_Operations {
 
 							format = "INSERT INTO btm.student VALUES "+query;
 							
+							// trying to insert the data
 							try {
 								stmt.executeUpdate(format);
 							}
@@ -72,6 +78,7 @@ public class DML_Operations {
 								flag=1;
 							}
 							
+							// if data inserted successfully
 							if(flag==0) {
 								System.out.println("\nData Inserted Successfully.");
 							}
@@ -80,7 +87,8 @@ public class DML_Operations {
 							}
 							break;
 
-						//Updating data into the table
+
+						// Data Updation code
 						case 2:
 							System.out.println("\nWrite the remaining part of the query / Or complete the query:");
 							System.out.println("Example: Update btm.student SET name='Ram' where id=1\n");
@@ -90,6 +98,7 @@ public class DML_Operations {
 
 							format = "Update btm.student SET "+query;
 
+							// trying to update the data
 							try {
 								stmt.executeUpdate(format);
 							}
@@ -99,6 +108,7 @@ public class DML_Operations {
 								flag=1;
 							}
 							
+							// if data updated successfully
 							if(flag==0) {
 								System.out.println("\nData Updated Successfully.");
 							}
@@ -107,7 +117,8 @@ public class DML_Operations {
 							}			
 							break;
 
-						//Deleting data from the table
+
+						// Data Deletion code
 						case 3:
 							System.out.println("\nWrite the remaining part of the query / Or complete the query:");
 							System.out.println("Example: DELETE FROM btm.student WHERE id=1\n");
@@ -117,6 +128,7 @@ public class DML_Operations {
 
 							format = "DELETE FROM btm.student WHERE "+query; 
 
+							// trying to delete the data
 							try {
 								stmt.executeUpdate(format);
 							}
@@ -126,6 +138,7 @@ public class DML_Operations {
 								flag=1;
 							}
 							
+							// if data deleted successfully
 							if(flag==0) {
 								System.out.println("\nData Deleted Successfully.");
 							}
@@ -134,6 +147,8 @@ public class DML_Operations {
 							}			
 							break;
 
+
+						// If user enter wrong choice	
 						default: 
 							System.out.println("Invalid Choice, Please choose the correct option.");
 							break;
