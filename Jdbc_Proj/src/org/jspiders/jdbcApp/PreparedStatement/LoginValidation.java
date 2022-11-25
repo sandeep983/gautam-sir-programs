@@ -46,7 +46,8 @@ public class LoginValidation {
 			if (rs != null) {
 				try {
 					rs.close();
-				} catch (SQLException e) {
+				} 
+				catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
@@ -54,7 +55,8 @@ public class LoginValidation {
 			if (pstmt != null) {
 				try {
 					pstmt.close();
-				} catch (SQLException e) {
+				} 
+				catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
@@ -62,7 +64,8 @@ public class LoginValidation {
 			if (con != null) {
 				try {
 					con.close();
-				} catch (SQLException e) {
+				} 
+				catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
