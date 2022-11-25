@@ -1,13 +1,14 @@
 package org.jspiders.jdbcApp;
 import java.sql.*;
-public class JdbcDemo {
+
+public class DeleteSingle {
 	public static void main(String[] args) {
 		Connection con = null;
 		Statement stmt = null;
-		String query = "Insert into btm.student values(1, 'Sandeep', 65.45)";
 		
-		try 
-		{
+		String query = "DELETE FROM btm.student WHERE id=1";
+		
+		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("Driver Class Loaded & Registered.");
 			
@@ -18,33 +19,26 @@ public class JdbcDemo {
 			System.out.println("Platform Created.");
 			
 			stmt.executeUpdate(query);
-			System.out.println("Data Inserted.");
+			System.out.println("Data Delted.");
 		} 
-		catch (ClassNotFoundException | SQLException e) 
-		{
+		catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		finally 
-		{
+		finally {
 			if(stmt!=null) {
-				try 
-				{
+				try {
 					stmt.close();
 				}
-				catch (SQLException e)
-				{
+				catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
 			
-			
 			if(con!=null) {
-				try 
-				{
+				try {
 					con.close();
 				} 
-				catch (SQLException e) 
-				{
+				catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
